@@ -1,0 +1,22 @@
+﻿@page "/"
+@using Models
+@using BusinessLogicLayer
+@inject IProductService ProductService
+
+<PageTitle>Home</PageTitle>
+
+<h1>Product Information</h1>
+
+@foreach (var p in Products)
+{
+    <p>@p.Id - @p.Name</p>
+}
+
+@code {
+    List<ProductModel> Products = new List<ProductModel>();
+
+    protected override void OnInitialized()
+    {
+        Products = ProductService.GetAllData();
+    }
+}
